@@ -107,7 +107,7 @@ package body EXT_UART is
    --------------------------
 
    procedure Initialize_EXT_UART is
-      Config_GPIO : GPIO_Port_Configuration;
+      Config_GPIO : GPIO_Port_Configuration (Mode_AF);
       Config_DMA  : DMA_Stream_Configuration;
    begin
       if Is_Init then
@@ -117,8 +117,6 @@ package body EXT_UART is
       ------------------------
       -- GPIO Configuration --
       ------------------------
-      Config_GPIO.Mode := Mode_AF;
-
       Enable_Clock (RX_Pin & TX_Pin);
       --  Config_GPIO.Speed       := Speed_50MHz;
       --  Config_GPIO.Output_Type := Push_Pull;
