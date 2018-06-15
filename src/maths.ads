@@ -1,4 +1,5 @@
 with Ada.Numerics; use Ada.Numerics;
+with Types;        use Types;
 
 package Maths
   with SPARK_Mode
@@ -29,5 +30,8 @@ is
 
    --  Wrapper for Ada.Numerics.Elementary_Functions.Arctan.
    function Asin (X : Float) return T_Radians;
+   
+   --  Return the mean of an array of Floats. Return zero if the array is empty.
+   function Mean_Float (Block : Float_Array) return Float;
 
 end Maths;

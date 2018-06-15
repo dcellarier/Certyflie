@@ -35,10 +35,10 @@ with Syslink;          use Syslink;
 
 package Tasks is
 
-   CRTP_Rx_Task          : CRTP_Rx_Task_Type (CRTP_RXTX_TASK_PRIORITY);
-   CRTP_Tx_Task          : CRTP_Tx_Task_Type (CRTP_RXTX_TASK_PRIORITY);
+   --  CRTP_Rx_Task          : CRTP_Rx_Task_Type (CRTP_RXTX_TASK_PRIORITY);
+   --  CRTP_Tx_Task          : CRTP_Tx_Task_Type (CRTP_RXTX_TASK_PRIORITY);
    Syslink_Task          : Syslink_Task_Type (SYSLINK_TASK_PRIORITY);
    Power_Management_Task : Power_Management_Task_Type (PM_TASK_PRIORITY);
-   Logger_Task           : Logger (LOG_TASK_PRIORITY);
+   --  Logger_Task           : Logger (LOG_TASK_PRIORITY);
 
 end Tasks;

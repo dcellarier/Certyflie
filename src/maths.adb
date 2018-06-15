@@ -26,4 +26,20 @@ is
       return Saturate (Arcsin (X), -Pi / 2.0, Pi / 2.0);
    end Asin;
 
+   function Mean_Float (Block : Float_Array) return Float
+   is
+      Sum  : Float := 0.0;
+      Mean : Float := 0.0;
+   begin
+      for b of Block loop
+         Sum := Sum + b;
+      end loop;
+
+      if Block'Length /= 0 then
+         Mean := Sum / Float (Block'Length);
+      end if;
+
+      return Mean;
+   end Mean_Float;
+
 end Maths;
