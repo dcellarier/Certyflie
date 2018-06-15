@@ -199,20 +199,19 @@ package body UART_Syslink is
 
    procedure Initialize_USART
    is
+      GPIO_Port_Config : GPIO_Port_Configuration (Mode_AF);
    begin
       Enable_Clock (NRF_RX & NRF_TX);
 
-      Configure_IO (NRF_RX,
-                    Config => (Mode => Mode_AF,
-                               Output_Type => Open_Drain,
-                               Speed => Speed_25MHz,
-                               Resistors => Pull_Up));
+      GPIO_Port_Config.AF_Output_Type := Open_Drain;
+      GPIO_Port_Config.AF_Speed := Speed_25MHz;
+      GPIO_Port_Config.Resistors := Pull_Up;
 
-      Configure_IO (NRF_TX,
-                    Config => (Mode => Mode_AF,
-                               Output_Type => Push_Pull,
-                               Speed => Speed_25MHz,
-                               Resistors => Pull_Up));
+      Configure_IO (NRF_RX, GPIO_Port_Config);
+
+      GPIO_Port_Config.AF_Output_Type := Push_Pull;
+
+      Configure_IO (NRF_TX, GPIO_Port_Config);
 
       Configure_Alternate_Function (NRF_RX & NRF_TX,
                                     AF => NRF_USART_AF);
@@ -267,14 +266,13 @@ package body UART_Syslink is
    -----------------------------
 
    procedure Initialize_Flow_Control is
+      GPIO_Port_Config : GPIO_Port_Configuration (Mode_In);
    begin
       Enable_Clock (NRF_FLOW_CTRL);
 
-      Configure_IO (NRF_FLOW_CTRL,
-                    Config => (Mode => Mode_In,
-                               Output_Type => Open_Drain,  -- n/a
-                               Speed => Speed_25MHz,
-                               Resistors => Pull_Up));
+      GPIO_Port_Config.Resistors := Pull_Up; 
+
+      Configure_IO (NRF_FLOW_CTRL, GPIO_Port_Config);
 
       Clear_External_Interrupt (Interrupt_Line_Number (NRF_FLOW_CTRL));
 

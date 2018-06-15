@@ -47,7 +47,7 @@ package body STM32.SPI.DECK is
    --  SPI_Begin  --
    -----------------
    procedure SPI_Begin is
-      Config_GPIO : GPIO_Port_Configuration;
+      Config_GPIO : GPIO_Port_Configuration (Mode_AF);
    begin
       
       --  Enable the SPI clock
@@ -67,9 +67,8 @@ package body STM32.SPI.DECK is
       Configure_Alternate_Function (EXT_SCK & EXT_MISO & EXT_MOSI,
                                     AF => EXT_SPI_AF);
       
-      Config_GPIO.Mode	      := Mode_AF;
-      Config_GPIO.Speed       := Speed_50MHz;
-      Config_GPIO.Output_Type := Push_Pull;
+      Config_GPIO.AF_Speed       := Speed_50MHz;
+      Config_GPIO.AF_Output_Type := Push_Pull;
       Config_GPIO.Resistors   := Pull_Down;
 
       Configure_IO (EXT_SCK & EXT_MISO & EXT_MOSI,
