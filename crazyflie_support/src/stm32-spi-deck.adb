@@ -4,14 +4,13 @@
 
 --  Derived from deck_spi.c of the Crazyflie frimware
 
-with STM32.Board;	   use STM32.Board;
-with STM32.GPIO;	   use STM32.GPIO;
-with STM32.DMA;		   use STM32.DMA;
+with STM32.Board;          use STM32.Board;
+with STM32.GPIO;           use STM32.GPIO;
+with STM32.DMA;            use STM32.DMA;
 with Ada.Interrupts;       use Ada.Interrupts;
 with Ada.Interrupts.Names; use Ada.Interrupts.Names;
-with STM32.Device;	   use STM32.Device;
+with STM32.Device;         use STM32.Device;
 with HAL.SPI;
---  with EXT_UART;          use EXT_UART;
 
 
 package body STM32.SPI.DECK is
@@ -69,10 +68,9 @@ package body STM32.SPI.DECK is
       
       Config_GPIO.AF_Speed       := Speed_50MHz;
       Config_GPIO.AF_Output_Type := Push_Pull;
-      Config_GPIO.Resistors   := Pull_Down;
+      Config_GPIO.Resistors      := Pull_Down;
 
-      Configure_IO (EXT_SCK & EXT_MISO & EXT_MOSI,
-                    Config => Config_GPIO);
+      Configure_IO (EXT_SCK & EXT_MISO & EXT_MOSI, Config_GPIO);
       
       ------------------------------
       --  SPI DMA initialization  --
